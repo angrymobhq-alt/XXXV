@@ -1,0 +1,59 @@
+:root {
+  color-scheme: dark;
+  font-family: Inter, Arial, sans-serif;
+  background: #030303;
+  color: #efefef;
+}
+* { box-sizing: border-box; }
+body, html, #root { margin: 0; min-height: 100%; background: #030303; }
+main { overflow-x: hidden; }
+
+.gate {
+  min-height: 52vh;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  padding: 4rem 1rem;
+  position: relative;
+  border-bottom: 1px solid #380000;
+}
+.scan { position:absolute; inset:0; background: repeating-linear-gradient(to bottom, transparent, transparent 2px, rgba(128,0,0,.06) 3px); pointer-events:none; }
+.gate h1 { font-size: clamp(1.6rem, 4vw, 3.5rem); letter-spacing: .09em; margin: 0; }
+.gate p { max-width: 760px; margin: 1rem auto; color: #cecece; }
+.gate button { background:#120101; border:1px solid #9f0000; color:#fff; padding: .9rem 1.2rem; cursor:pointer; text-transform: uppercase; letter-spacing:.08em; }
+
+.hero { position: relative; height: 75vh; min-height: 520px; border-bottom: 1px solid #2f2f2f; }
+.canvas-wrap { position:absolute; inset:0; }
+.overlay-copy { position:absolute; inset:auto 4vw 10%; z-index:4; }
+.overlay-copy h2 { font-size: clamp(3rem, 12vw, 11rem); margin:0; line-height:.85; }
+.overlay-copy p { letter-spacing:.12em; }
+
+.chambers article { min-height: 45vh; display:grid; place-content:center; padding: 2rem; border-bottom:1px solid #1b1b1b; }
+.chambers h3 { font-size: clamp(2rem, 7vw, 5rem); max-width: 18ch; margin:0; }
+
+.vault { display:grid; grid-template-columns: 320px 1fr; min-height: 55vh; border-bottom:1px solid #1b1b1b; }
+.vault aside { border-right:1px solid #1b1b1b; padding:1.2rem; display:flex; flex-direction:column; gap:.7rem; }
+.vault aside button { background: transparent; color:#ddd; border:1px solid #333; padding:.7rem; text-align:left; }
+.vault aside button.active { border-color:#b60000; color:#fff; }
+.vault-panel { padding:2rem; }
+.vault-panel h4 { color:#ff3d3d; }
+.network { padding:4rem 1.2rem 6rem; text-align:center; }
+.nodes { display:flex; flex-wrap:wrap; justify-content:center; gap:.8rem; margin-top:1rem; }
+.nodes span { border:1px solid #5a5a5a; padding:.45rem .8rem; }
+
+@media (max-width: 900px) {
+  .vault { grid-template-columns: 1fr; }
+  .vault aside { border-right: none; border-bottom:1px solid #1b1b1b; }
+}
+
+.vfr-logo {
+  width: min(680px, 82vw);
+  display: block;
+  margin: 0 auto 1rem;
+  filter: drop-shadow(0 0 22px rgba(183, 0, 0, 0.45));
+}
+.vfr-logo--hero {
+  width: min(420px, 48vw);
+  margin: 0 0 1.2rem;
+  opacity: 0.92;
+}
