@@ -1,0 +1,16 @@
+<svg width="1600" height="600" viewBox="0 0 1600 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="0" stdDeviation="8" flood-color="#9a0000" flood-opacity="0.45"/>
+    </filter>
+    <linearGradient id="steel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F6F7F8"/>
+      <stop offset="1" stop-color="#CCD3D9"/>
+    </linearGradient>
+  </defs>
+  <g filter="url(#glow)">
+    <path d="M80 110L210 470L360 300L300 470L220 560L40 170L80 110Z" fill="url(#steel)" stroke="#D70000" stroke-width="10"/>
+    <path d="M430 560L640 120L780 120L730 240L860 240L820 340L690 340L590 560L430 560Z" fill="url(#steel)" stroke="#D70000" stroke-width="10"/>
+    <path d="M900 560L1030 120L1220 120C1320 120 1380 180 1380 250C1380 340 1310 390 1240 390L1320 560L1170 560L1120 420H1060L1020 560H900ZM1090 320H1180C1220 320 1245 298 1245 268C1245 238 1225 220 1180 220H1120L1090 320Z" fill="url(#steel)" stroke="#D70000" stroke-width="10"/>
+  </g>
+</svg>

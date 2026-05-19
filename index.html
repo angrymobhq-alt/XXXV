@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VFR — THE RARE IDENTITY SYSTEM</title>
+  <style>
+    :root{--bg:#030303;--red:#b30000;--text:#f0f0f0}
+    *{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,sans-serif}
+    .gate,.chamber,.network{padding:6rem 1rem;text-align:center;position:relative}
+    .scan{position:absolute;inset:0;background:repeating-linear-gradient(to bottom,transparent,transparent 2px,rgba(179,0,0,.06) 3px);pointer-events:none}
+    .logo{width:min(760px,86vw);filter:drop-shadow(0 0 24px rgba(179,0,0,.45));display:block;margin:0 auto 1rem}
+    h1{letter-spacing:.08em} .btn{background:#140101;border:1px solid var(--red);padding:.9rem 1.2rem;color:#fff;cursor:pointer}
+    .hero{height:72vh;min-height:500px;position:relative;border-top:1px solid #2d0000;border-bottom:1px solid #262626}
+    canvas{position:absolute;inset:0;width:100%;height:100%}
+    .overlay{position:absolute;left:4vw;bottom:8vh;z-index:2} .overlay h2{font-size:clamp(2.5rem,10vw,9rem);line-height:.85;margin:.3rem 0}
+    .vault{display:grid;grid-template-columns:320px 1fr;min-height:50vh;border-top:1px solid #1a1a1a}
+    .vault aside{padding:1rem;border-right:1px solid #1a1a1a;display:flex;flex-direction:column;gap:.5rem}
+    .vault button{border:1px solid #353535;background:transparent;color:#ddd;padding:.7rem;text-align:left;cursor:pointer}
+    .vault button.active{border-color:var(--red);color:white}.panel{padding:2rem}
+    .nodes{display:flex;gap:.7rem;flex-wrap:wrap;justify-content:center} .nodes span{border:1px solid #535353;padding:.45rem .8rem}
+    @media(max-width:900px){.vault{grid-template-columns:1fr}.vault aside{border-right:none;border-bottom:1px solid #1a1a1a}}
+  </style>
+</head>
+<body>
+  <section class="gate">
+    <div class="scan"></div>
+    <img class="logo" src="./src/assets/vfr-logo.svg" alt="VFR logo" />
+    <h1>VFR — VERYFXCKENRARE®</h1>
+    <p>NOT A BRAND. NOT A PORTFOLIO. A CULTURAL IDENTITY SYSTEM FOR PEOPLE WHO REFUSE ORDINARY OUTCOMES.</p>
+    <button class="btn" id="enter">HOLD TO ENTER THE MYTH <span id="progress">0%</span></button>
+  </section>
+
+  <section class="hero">
+    <canvas id="scene"></canvas>
+    <div class="overlay">
+      <img class="logo" style="width:min(360px,52vw);margin:0 0 1rem" src="./src/assets/vfr-logo.svg" alt="VFR mark" />
+      <h2>VERY<br>FXCKEN<br>RARE</h2>
+      <p>NOT A BRAND. A PRESSURE SYSTEM.</p>
+    </div>
+  </section>
+
+  <section class="chamber"><h2>NORMALITY IS THE MOST EXPENSIVE PRISON.</h2></section>
+  <section class="chamber"><h2>BUILT FOR MINDS THAT CANNOT SLEEP.</h2></section>
+  <section class="chamber"><h2>RARE MINDS CREATE DIFFERENT FUTURES.</h2></section>
+
+  <section class="vault">
+    <aside id="vaultList"></aside>
+    <div class="panel">
+      <h3 id="vId"></h3><h4 id="vTitle"></h4><p id="vBody"></p>
+    </div>
+  </section>
+
+  <section class="network">
+    <h3>RARE MINDS NETWORK</h3>
+    <div class="nodes"><span>CREATOR</span><span>FOUNDER</span><span>ARTIST</span><span>VISIONARY</span><span>BUILDER</span><span>REBEL</span></div>
+  </section>
+
+<script>
+const vault=[
+{id:'VFR–NOIR–777',title:'ANTI-NORMALITY DOCTRINE',body:'Normality is not neutral. It is a design system for predictable people.'},
+{id:'ARCHIVE//773',title:'VISUAL IDENTITY FRAGMENTS',body:'Identity is pressure rendered as visual architecture.'},
+{id:'OBSESSION–BLACKBOX',title:'CREATOR PHILOSOPHY',body:'Built for minds that cannot sleep. Obsession is strategic stamina.'},
+{id:'FUTURE–RELIC–001',title:'LEGACY SYSTEMS',body:'Rare minds create different futures and leave cultural evidence.'}
+];
+let selected=0; const list=document.getElementById('vaultList');
+function renderVault(){list.innerHTML=''; vault.forEach((v,i)=>{const b=document.createElement('button');b.textContent=v.id;b.className=i===selected?'active':'';b.onclick=()=>{selected=i;renderVault()};list.appendChild(b)});
+vId.textContent=vault[selected].id; vTitle.textContent=vault[selected].title; vBody.textContent=vault[selected].body;} renderVault();
+
+const enter=document.getElementById('enter'), progress=document.getElementById('progress'); let raf,start;
+function tick(t){const v=Math.min((t-start)/1800,1); progress.textContent=Math.round(v*100)+'%'; if(v<1) raf=requestAnimationFrame(tick);}
+enter.addEventListener('mousedown',()=>{start=performance.now(); raf=requestAnimationFrame(tick)});
+['mouseup','mouseleave'].forEach(e=>enter.addEventListener(e,()=>cancelAnimationFrame(raf)));
+
+const c=document.getElementById('scene'),x=c.getContext('2d');
+function resize(){c.width=c.clientWidth*devicePixelRatio;c.height=c.clientHeight*devicePixelRatio;} resize(); addEventListener('resize',resize);
+function draw(t){x.clearRect(0,0,c.width,c.height); const w=c.width,h=c.height; x.fillStyle='#030303';x.fillRect(0,0,w,h);
+const cx=w*.5, cy=h*.5 + Math.sin(t*.001)*20; const s=Math.min(w,h)*.18;
+x.save();x.translate(cx,cy);x.rotate(t*.00025);
+const g=x.createLinearGradient(-s,-s,s,s);g.addColorStop(0,'#141414');g.addColorStop(1,'#550000');x.fillStyle=g;
+x.shadowColor='rgba(179,0,0,.65)';x.shadowBlur=40; x.fillRect(-s*.55,-s*1.1,s*1.1,s*2.2);x.restore();
+requestAnimationFrame(draw);} requestAnimationFrame(draw);
+</script>
+</body>
+</html>
